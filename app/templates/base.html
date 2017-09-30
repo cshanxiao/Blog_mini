@@ -14,6 +14,7 @@
         <link href="{{ url_for('static', filename='css/common.css') }}" rel="stylesheet">
     {% endblock %}
 </head>
+
 <body>
 <header>
     <div class='header-top'>
@@ -88,6 +89,7 @@
         </div>
     </nav>
 </header>
+
 {% block Content %}
     <div class="content">
         <div class="container">
@@ -135,6 +137,7 @@
         </div>
     </div>
 {% endblock %}
+
 <div class="footer">
     <p class="footer-content">
         @2016
@@ -147,6 +150,7 @@
         {% endif %}
     </p>
 </div>
+
 <div class="btn-group-vertical floatButton">
     <button id="goTop" class="btn btn-default" title="去顶部" type="button">
         <span class="glyphicon glyphicon-arrow-up"></span>
@@ -158,6 +162,7 @@
         <span class="glyphicon glyphicon-arrow-down"></span>
     </button>
 </div>
+
 {% block script %}
     <script src="{{ url_for('static', filename='js/jquery-2.2.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
@@ -176,5 +181,6 @@
     {{ moment.include_moment() }}
     {{ moment.lang('zh-cn') }}
 {% endblock %}
+
 </body>
 </html>

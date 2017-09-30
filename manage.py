@@ -46,8 +46,15 @@ manager.add_command("shell", Shell(make_context=make_shell_context))
 @manager.command
 def deploy(deploy_type):
     from flask.ext.migrate import upgrade
-    from app.models import (BlogInfo, User, ArticleTypeSetting, Source, 
-        ArticleType, Plugin, BlogView, Comment)
+    from app.models import (
+        BlogInfo, 
+        User, 
+        ArticleTypeSetting, 
+        Source, 
+        ArticleType, 
+        Plugin, 
+        BlogView, 
+        Comment)
 
     # upgrade database to the latest version
     upgrade()
@@ -77,7 +84,7 @@ def deploy(deploy_type):
         BlogView.insert_view()
 
     # You must run `python manage.py deploy(product)` before run `python manage.py deploy(test_data)`
-    if deploy_type == 'test_data':
+    elif deploy_type == 'test_data':
         # step_1:insert navs
         Menu.insert_menus()
 

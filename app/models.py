@@ -10,7 +10,8 @@ article_types = {u'开发语言': ['Python', 'Java', 'JavaScript'],
                  u'网络技术': [u'思科网络技术', u'其它'],
                  u'数据库': ['MySQL', 'Redis'],
                  u'爱生活，爱自己': [u'生活那些事', u'学校那些事',u'感情那些事'],
-                 u'Web开发': ['Flask', 'Django'],}
+                 u'Web开发': ['Flask', 'Django'],
+                }
 
 
 class User(UserMixin, db.Model):
@@ -136,10 +137,11 @@ class ArticleType(db.Model):
 
     @staticmethod
     def insert_system_articleType():
-        articleType = ArticleType(name=u'未分类',
-                                  introduction=u'系统默认分类，不可删除。',
-                                  setting=ArticleTypeSetting.query.filter_by(protected=True).first()
-                                  )
+        articleType = ArticleType(
+            name=u'未分类',
+            introduction=u'系统默认分类，不可删除。',
+            setting=ArticleTypeSetting.query.filter_by(protected=True).first()
+            )
         db.session.add(articleType)
         db.session.commit()
 
@@ -184,9 +186,7 @@ class Source(db.Model):
 
     @staticmethod
     def insert_sources():
-        sources = (u'原创',
-                   u'转载',
-                   u'翻译')
+        sources = (u'原创', u'转载', u'翻译')
         for s in sources:
             source = Source.query.filter_by(name=s).first()
             if source is None:
@@ -373,12 +373,13 @@ class Plugin(db.Model):
         plugin = Plugin(title=u'博客统计',
                         note=u'系统插件',
                         content='system_plugin',
-			order=1)
+                        order=1)
         db.session.add(plugin)
         db.session.commit()
 
     def sort_delete(self):
-        for plugin in Plugin.query.order_by(Plugin.order.asc()).offset(self.order).all():
+        plugins = Plugin.query.order_by(Plugin.order.asc()).offset(self.order).all()
+        for plugin in plugins:
             plugin.order -= 1
             db.session.add(plugin)
 

@@ -1,5 +1,5 @@
-#coding:utf-8
-from flask import render_template, request, current_app, redirect,\
+# -*- coding: utf-8 -*-
+from flask import render_template, request, current_app, redirect, \
     url_for, flash
 from . import main
 from ..models import Article, ArticleType, article_types, Comment, \
